@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 384px;
+  overflow-y: auto;
+}
+
+/* .emptyState {
+  text-align: center;
+  padding: 32px 0;
+  color: #6b7280;
+}
+
+.emptyStateTitle {
+  margin: 0;
+}
+
+.emptyStateSubtitle {
+  font-size: 14px;
+  margin-top: 4px;
+  margin-bottom: 0;
+} */
+
+.songItem {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid #bdbdbd;
+  transition: box-shadow 0.2s;
+}
+
+.songContent {
+  display: flex;
+  justify-content: space-between;
+}
+/* 
+.songInfo {
+  flex: 1;
+} */
+
+.songTitle {
+  font-weight: 600;
+  color: #000000;
+  font-size: 18px;
+  margin: 0;
+}
+
+.songArtist {
+  color: #000000;
+  font-size: 14px;
+}
+
+.genreBadge {
+  background-color: #ff8800;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  margin-top: 8px;
+}
+
+.deleteButton {
+  /* margin-left: 16px; */
+  color: #d70000;
+  background: none;
+  border: none;
+  /* cursor: pointer; */
+  padding: 4px;
+  border-radius: 4px;
+  /* transition: color 0.2s; */
+}
+
+.deleteButton svg {
+  width: 20px;
+  height: 20px;
+}

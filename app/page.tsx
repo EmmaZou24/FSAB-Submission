@@ -6,6 +6,7 @@ import SongList from '../components/SongList';
 import FilterControls from '../components/FilterControls';
 import { Song, FilterOptions } from '../types/song';
 import { songService } from '../services/songService';
+import styles from './page.module.css';
 
 export default function Home() {
   const [songs, setSongs] = useState<Song[]>([]); // States for songs
@@ -13,20 +14,29 @@ export default function Home() {
   
   const [filters, setFilters] = useState<FilterOptions>({}); // States for filters
 
-  const loadSongs = () => {
-    // TODO: Implement loadSongs function
-    // 1. Fetch all songs from Firebase Firestore
-    // 2. Update local songs state
-    // 3. Handle any errors
-    console.log('TODO: Implement loadSongs');
+  const loadSongs = async () => {
+    try {
+      const allSongs = await songService.getAllSongs();
+      setSongs(allSongs);
+    } catch (error) {
+      console.error('Error loading songs:', error);
+    }
   };
 
   const applyFilters = () => {
-    // TODO: Implement applyFilters function
-    // 1. Filter songs based on current filter options
-    // 2. Update filteredSongs state
-    // 3. If no filters are active, show all songs
-    console.log('TODO: Implement applyFilters');
+    let filtered = [...songs];
+    
+    if (filters.genre) {
+      filtered = filtered.filter(song => song.genre === filters.genre);
+    }
+    
+    if (filters.artist) {
+      filtered = filtered.filter(song => 
+        song.artist.toLowerCase().includes(filters.artist!.toLowerCase())
+      );
+    }
+    
+    setFilteredSongs(filtered);
   };
 
   // TODO: Add useEffect to load songs from Firebase on component mount
@@ -67,22 +77,22 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-6xl mx-auto px-4">
-        <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
-          Song Collection Manager
+    <div className={styles.container}>
+      <div className={styles.wrapper}>
+        <h1 className={styles.title}>
+          Music Manager!
         </h1>
         
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className={styles.grid}>
           {/* Song Form Card */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-semibold mb-4 text-gray-700">Add New Song</h2>
+          <div className={styles.card}>
+            <h2 className={styles.cardTitle}>Add a New Song!</h2>
             <SongForm onSubmit={addSong} />
           </div>
 
           {/* Filter Controls Card */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-semibold mb-4 text-gray-700">Filter Songs</h2>
+          <div className={styles.card}>
+            <h2 className={styles.cardTitle}>Filter Songs</h2>
             <FilterControls 
               onFilterChange={updateFilters}
               currentFilters={filters}
@@ -90,8 +100,8 @@ export default function Home() {
           </div>
 
           {/* Song List Card */}
-          <div className="bg-white rounded-lg shadow-md p-6 lg:col-span-1">
-            <h2 className="text-xl font-semibold mb-4 text-gray-700">Song Collection</h2>
+          <div className={styles.songListCard}>
+            <h2 className={styles.cardTitle}>Songs</h2>
             <SongList 
               songs={filteredSongs}
               onDeleteSong={deleteSong}

@@ -1,6 +1,7 @@
 'use client';
 
 import { Song } from '../types/song';
+import styles from './SongList.module.css';
 
 interface SongListProps {
   songs: Song[];
@@ -8,59 +9,43 @@ interface SongListProps {
 }
 
 export default function SongList({ songs, onDeleteSong }: SongListProps) {
-  const handleDelete = (songId: string) => {
-    // TODO: Add confirmation dialog before deleting
-    // Hint: Use window.confirm() or a more sophisticated modal
-    // if (window.confirm('Are you sure you want to delete this song?')) {
-    //   onDeleteSong(songId);
-    // }
-    console.log('TODO: Add delete confirmation', songId);
-    onDeleteSong(songId);
-  };
 
   if (songs.length === 0) {
     return (
-      <div className="text-center py-8 text-gray-500">
-        <p>No songs found.</p>
-        <p className="text-sm mt-1">Add a song using the form above!</p>
+      <div className={styles.emptyState}>
+        <p className={styles.emptyStateTitle}>No songs found.</p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-3 max-h-96 overflow-y-auto">
-      {/* TODO: Map through songs array to display each song */}
+    <div className={styles.container}>
       {songs.map((song) => (
         <div
           key={song.id}
-          className="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow"
+          className={styles.songItem}
         >
-          <div className="flex justify-between items-start">
-            <div className="flex-1">
-              {/* TODO: Display song title */}
-              <h3 className="font-semibold text-gray-800 text-lg">
+          <div className={styles.songContent}>
+            <div className={styles.songInfo}>
+              <h3 className={styles.songTitle}>
                 {song.title}
               </h3>
               
-              {/* TODO: Display artist */}
-              <p className="text-gray-600 text-sm mt-1">
-                by {song.artist}
+              <p className={styles.songArtist}>
+                Artist: {song.artist}
               </p>
               
-              {/* TODO: Display genre with a styled badge */}
-              <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full mt-2">
+              <span className={styles.genreBadge}>
                 {song.genre}
               </span>
             </div>
             
-            {/* TODO: Add delete button */}
             <button
-              onClick={() => handleDelete(song.id)}
-              className="ml-4 text-red-500 hover:text-red-700 focus:outline-none focus:text-red-700 transition-colors"
+              onClick={() => onDeleteSong(song.id)}
+              className={styles.deleteButton}
               title="Delete song"
             >
               <svg
-                className="w-5 h-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
