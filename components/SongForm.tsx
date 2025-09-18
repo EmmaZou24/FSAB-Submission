@@ -23,19 +23,10 @@ const GENRES = [
 ];
 
 export default function SongForm({ onSubmit }: SongFormProps) {
-  // TODO: Add state for form data
-  // Hint: const [formData, setFormData] = useState({ title: '', artist: '', genre: '' });
   const [formData, setFormData] = useState({ title: '', artist: '', genre: '' });
-  
-  // TODO: Add state for form validation errors
-  // Hint: const [errors, setErrors] = useState<Record<string, string>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    // TODO: Implement handleInputChange
-    // 1. Update formData state with new input value
-    // 2. Clear any existing errors for this field
-    // Hint: setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
     setErrors(prev => ({ ...prev, [e.target.name]: '' }));
   };
@@ -50,12 +41,6 @@ export default function SongForm({ onSubmit }: SongFormProps) {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    // TODO: Implement handleSubmit
-    // 1. Prevent default form submission
-    // 2. Validate the form
-    // 3. If valid, call onSubmit with form data
-    // 4. Reset the form after successful submission
-    // 5. Handle any errors
     e.preventDefault();
     if (validateForm()) {
       console.log('Song submitted:', formData);

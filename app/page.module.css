@@ -4,12 +4,6 @@
   padding: 32px;
 }
 
-/* .wrapper {
-  max-width: 1152px;
-  margin: 0 auto;
-  padding: 0 16px;
-} */
-
 .title {
   font-size: 40px;
   font-weight: 700;
@@ -35,7 +29,6 @@
   background-color: white;
   border-radius: 8px;
   border: 1px solid #bdbdbd;
-  /* box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); */
   padding: 24px;
 }
 
@@ -50,12 +43,5 @@
   background-color: white;
   border-radius: 8px;
   border: 1px solid #bdbdbd;
-  /* box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); */
   padding: 24px;
 }
-
-/* @media (min-width: 1024px) {
-  .songListCard {
-    grid-column: span 1;
-  }
-} */

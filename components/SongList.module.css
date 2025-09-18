@@ -6,22 +6,6 @@
   overflow-y: auto;
 }
 
-/* .emptyState {
-  text-align: center;
-  padding: 32px 0;
-  color: #6b7280;
-}
-
-.emptyStateTitle {
-  margin: 0;
-}
-
-.emptyStateSubtitle {
-  font-size: 14px;
-  margin-top: 4px;
-  margin-bottom: 0;
-} */
-
 .songItem {
   background-color: #ffffff;
   border-radius: 8px;
@@ -34,10 +18,6 @@
   display: flex;
   justify-content: space-between;
 }
-/* 
-.songInfo {
-  flex: 1;
-} */
 
 .songTitle {
   font-weight: 600;
@@ -61,17 +41,12 @@
 }
 
 .deleteButton {
-  /* margin-left: 16px; */
   color: #d70000;
   background: none;
-  border: none;
-  /* cursor: pointer; */
-  padding: 4px;
+  border: 2px solid #d70000;
+  cursor: pointer;
+  padding: 4px 8px;
   border-radius: 4px;
-  /* transition: color 0.2s; */
-}
-
-.deleteButton svg {
-  width: 20px;
-  height: 20px;
+  font-size: 12px;
+  max-height: 40px;
 }

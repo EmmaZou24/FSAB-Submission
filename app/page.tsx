@@ -30,17 +30,9 @@ export default function Home() {
       filtered = filtered.filter(song => song.genre === filters.genre);
     }
     
-    if (filters.artist) {
-      filtered = filtered.filter(song => 
-        song.artist.toLowerCase().includes(filters.artist!.toLowerCase())
-      );
-    }
-    
     setFilteredSongs(filtered);
   };
 
-  // TODO: Add useEffect to load songs from Firebase on component mount
-  // Hint: useEffect(() => { loadSongs(); }, []);
   useEffect(() => { loadSongs(); }, []);
   useEffect(() => { applyFilters(); }, [songs, filters]);
 

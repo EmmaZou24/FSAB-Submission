@@ -25,16 +25,10 @@ const GENRES = [
 ];
 
 export default function FilterControls({ onFilterChange, currentFilters }: FilterControlsProps) {
-  // TODO: Add state for local filter values
   const [localFilters, setLocalFilters] = useState<FilterOptions>(currentFilters);
-  // TODO: Add useEffect to sync local filters with currentFilters prop
   useEffect(() => { setLocalFilters(currentFilters); }, [currentFilters]);
 
   const handleFilterChange = (filterType: keyof FilterOptions, value: string) => {
-    // TODO: Implement handleFilterChange
-    // 1. Update local filter state
-    // 2. If value is empty, remove that filter
-    // 3. Call onFilterChange with updated filters
     setLocalFilters(prev => ({ ...prev, [filterType]: value }));
     if (value) {
       onFilterChange({ ...localFilters, [filterType]: value });
@@ -46,17 +40,11 @@ export default function FilterControls({ onFilterChange, currentFilters }: Filte
   };
 
   const clearAllFilters = () => {
-    // TODO: Implement clearAllFilters
-    // 1. Reset all filters to empty
-    // 2. Call onFilterChange with empty filters
     setLocalFilters({});
     onFilterChange({});
   };
 
   const hasActiveFilters = () => {
-    // TODO: Implement hasActiveFilters
-    // 1. Check if any filter has a value
-    // 2. Return true if any filters are active, false otherwise
     return Object.values(localFilters).some(value => value && value.trim() !== '');
   };
 
@@ -82,19 +70,6 @@ export default function FilterControls({ onFilterChange, currentFilters }: Filte
         </select>
       </div>
 
-      {/* Artist Filter */}
-      <div className={styles.field}>
-        <label htmlFor="filter-artist" className={styles.label}>
-          Filter by Artist
-        </label>
-        <input
-          type="text"
-          id="filter-artist"
-          value={localFilters.artist || ''}
-          onChange={(e) => handleFilterChange('artist', e.target.value)}
-          className={styles.input}
-        />
-      </div>
 
       {/* Clear Filters Button */}
       {hasActiveFilters() && (
